@@ -9,21 +9,36 @@
 /* Begin PBXBuildFile section */
 		1568ABF12C2AD38700C967FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF02C2AD38700C967FC /* AppDelegate.swift */; };
 		1568ABF32C2AD38700C967FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF22C2AD38700C967FC /* SceneDelegate.swift */; };
-		1568ABF52C2AD38700C967FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF42C2AD38700C967FC /* ViewController.swift */; };
 		1568ABF82C2AD38700C967FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1568ABF62C2AD38700C967FC /* Main.storyboard */; };
 		1568ABFA2C2AD38900C967FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1568ABF92C2AD38900C967FC /* Assets.xcassets */; };
 		1568ABFD2C2AD38900C967FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1568ABFB2C2AD38900C967FC /* LaunchScreen.storyboard */; };
+		1568AC072C2AD46C00C967FC /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC062C2AD46C00C967FC /* LoadViewController.swift */; };
+		1568AC0A2C2ADA8E00C967FC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1568AC092C2ADA8E00C967FC /* SnapKit */; };
+		1568AC0D2C2ADEFC00C967FC /* OneUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC0C2C2ADEFC00C967FC /* OneUserViewController.swift */; };
+		1568AC0F2C2ADF0B00C967FC /* TwoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC0E2C2ADF0B00C967FC /* TwoUserViewController.swift */; };
+		1568AC142C2B00FE00C967FC /* MainDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC132C2B00FE00C967FC /* MainDashboardViewController.swift */; };
+		1568AC172C2B022800C967FC /* MainDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC162C2B022800C967FC /* MainDashboardView.swift */; };
+		1568AC192C2B18AB00C967FC /* TotalBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC182C2B18AA00C967FC /* TotalBalanceViewController.swift */; };
+		1568AC1D2C2B317700C967FC /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC1C2C2B317700C967FC /* TabViewController.swift */; };
+		1568AC1F2C2B3F1400C967FC /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568AC1E2C2B3F1400C967FC /* CoursesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1568ABED2C2AD38700C967FC /* redskyHorizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = redskyHorizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1568ABF02C2AD38700C967FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1568ABF22C2AD38700C967FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1568ABF42C2AD38700C967FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1568ABF72C2AD38700C967FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1568ABF92C2AD38900C967FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1568ABFC2C2AD38900C967FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1568ABFE2C2AD38900C967FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1568AC062C2AD46C00C967FC /* LoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
+		1568AC0C2C2ADEFC00C967FC /* OneUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneUserViewController.swift; sourceTree = "<group>"; };
+		1568AC0E2C2ADF0B00C967FC /* TwoUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoUserViewController.swift; sourceTree = "<group>"; };
+		1568AC132C2B00FE00C967FC /* MainDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDashboardViewController.swift; sourceTree = "<group>"; };
+		1568AC162C2B022800C967FC /* MainDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDashboardView.swift; sourceTree = "<group>"; };
+		1568AC182C2B18AA00C967FC /* TotalBalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBalanceViewController.swift; sourceTree = "<group>"; };
+		1568AC1C2C2B317700C967FC /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		1568AC1E2C2B3F1400C967FC /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1568AC0A2C2ADA8E00C967FC /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +72,78 @@
 		1568ABEF2C2AD38700C967FC /* redskyHorizon */ = {
 			isa = PBXGroup;
 			children = (
-				1568ABF02C2AD38700C967FC /* AppDelegate.swift */,
-				1568ABF22C2AD38700C967FC /* SceneDelegate.swift */,
-				1568ABF42C2AD38700C967FC /* ViewController.swift */,
-				1568ABF62C2AD38700C967FC /* Main.storyboard */,
-				1568ABF92C2AD38900C967FC /* Assets.xcassets */,
-				1568ABFB2C2AD38900C967FC /* LaunchScreen.storyboard */,
+				1568AC1B2C2B315800C967FC /* TabBar */,
 				1568ABFE2C2AD38900C967FC /* Info.plist */,
+				1568AC052C2AD42900C967FC /* Other */,
+				1568AC042C2AD40E00C967FC /* loadScreen */,
+				1568AC0B2C2ADEB600C967FC /* UserOnboarding */,
+				1568AC122C2B005200C967FC /* MainDashboard */,
 			);
 			path = redskyHorizon;
+			sourceTree = "<group>";
+		};
+		1568AC042C2AD40E00C967FC /* loadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1568AC062C2AD46C00C967FC /* LoadViewController.swift */,
+			);
+			path = loadScreen;
+			sourceTree = "<group>";
+		};
+		1568AC052C2AD42900C967FC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				1568ABF02C2AD38700C967FC /* AppDelegate.swift */,
+				1568ABF92C2AD38900C967FC /* Assets.xcassets */,
+				1568ABF22C2AD38700C967FC /* SceneDelegate.swift */,
+				1568ABF62C2AD38700C967FC /* Main.storyboard */,
+				1568ABFB2C2AD38900C967FC /* LaunchScreen.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		1568AC0B2C2ADEB600C967FC /* UserOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1568AC0E2C2ADF0B00C967FC /* TwoUserViewController.swift */,
+				1568AC0C2C2ADEFC00C967FC /* OneUserViewController.swift */,
+			);
+			path = UserOnboarding;
+			sourceTree = "<group>";
+		};
+		1568AC122C2B005200C967FC /* MainDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				1568AC1A2C2B18B300C967FC /* Other */,
+				1568AC152C2B021100C967FC /* Main */,
+			);
+			path = MainDashboard;
+			sourceTree = "<group>";
+		};
+		1568AC152C2B021100C967FC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1568AC132C2B00FE00C967FC /* MainDashboardViewController.swift */,
+				1568AC162C2B022800C967FC /* MainDashboardView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1568AC1A2C2B18B300C967FC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				1568AC182C2B18AA00C967FC /* TotalBalanceViewController.swift */,
+				1568AC1E2C2B3F1400C967FC /* CoursesViewController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		1568AC1B2C2B315800C967FC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1568AC1C2C2B317700C967FC /* TabViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +162,9 @@
 			dependencies = (
 			);
 			name = redskyHorizon;
+			packageProductDependencies = (
+				1568AC092C2ADA8E00C967FC /* SnapKit */,
+			);
 			productName = redskyHorizon;
 			productReference = 1568ABED2C2AD38700C967FC /* redskyHorizon.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +193,9 @@
 				Base,
 			);
 			mainGroup = 1568ABE42C2AD38700C967FC;
+			packageReferences = (
+				1568AC082C2ADA8E00C967FC /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 1568ABEE2C2AD38700C967FC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +223,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1568ABF52C2AD38700C967FC /* ViewController.swift in Sources */,
+				1568AC192C2B18AB00C967FC /* TotalBalanceViewController.swift in Sources */,
+				1568AC142C2B00FE00C967FC /* MainDashboardViewController.swift in Sources */,
+				1568AC0F2C2ADF0B00C967FC /* TwoUserViewController.swift in Sources */,
+				1568AC172C2B022800C967FC /* MainDashboardView.swift in Sources */,
+				1568AC072C2AD46C00C967FC /* LoadViewController.swift in Sources */,
 				1568ABF12C2AD38700C967FC /* AppDelegate.swift in Sources */,
+				1568AC1D2C2B317700C967FC /* TabViewController.swift in Sources */,
+				1568AC0D2C2ADEFC00C967FC /* OneUserViewController.swift in Sources */,
 				1568ABF32C2AD38700C967FC /* SceneDelegate.swift in Sources */,
+				1568AC1F2C2B3F1400C967FC /* CoursesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,9 +389,9 @@
 				INFOPLIST_FILE = redskyHorizon/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,6 +399,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = k.redskyHorizon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,9 +420,9 @@
 				INFOPLIST_FILE = redskyHorizon/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +430,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = k.redskyHorizon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,6 +461,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1568AC082C2ADA8E00C967FC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1568AC092C2ADA8E00C967FC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1568AC082C2ADA8E00C967FC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1568ABE52C2AD38700C967FC /* Project object */;
 }
