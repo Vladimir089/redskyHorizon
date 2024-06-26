@@ -73,7 +73,7 @@ class CoursesViewController: UIViewController {
         collectionView?.snp.makeConstraints({ make in
             make.left.right.equalToSuperview().inset(15)
             make.bottom.equalToSuperview()
-            make.top.equalTo(orangeView.snp.bottom).inset(-15)
+            make.top.equalTo(orangeView.snp.bottom)
         })
         
         
@@ -241,6 +241,8 @@ extension CoursesViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
     }
 
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0) // Отступ сверху для первой ячейки
+        }
     
 }

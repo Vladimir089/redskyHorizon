@@ -15,9 +15,13 @@ class TabViewController: UITabBarController {
         let dashboardVC = MainDashboardViewController()
         let tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "chart.pie.fill")?.resize(targetSize: CGSize(width: 24, height: 25)), tag: 0)
         dashboardVC.tabBarItem = tabBarItem
+        
+        let myCoursesVc = YouCoursesViewController()
+        let tabBaritemTwo = UITabBarItem(title: "", image: UIImage(systemName: "chart.bar.doc.horizontal.fill")?.resize(targetSize: CGSize(width: 22, height: 25)), tag: 1)
+        myCoursesVc.tabBarItem = tabBaritemTwo
 
 
-        viewControllers = [dashboardVC]
+        viewControllers = [dashboardVC, myCoursesVc]
         
         
         tabBar.backgroundColor = .BG

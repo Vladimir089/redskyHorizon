@@ -61,7 +61,7 @@ class MainDashboardView: UIView {
             button.backgroundColor = .secondary
             button.layer.cornerRadius = 20
             button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
-
+            button.setTitle("$", for: .normal)
             button.setTitleColor(.mainText, for: .normal)
             return button
         }()
@@ -104,50 +104,36 @@ class MainDashboardView: UIView {
             make.top.equalTo(secondaryLabel.snp.bottom).inset(-20)
         }
         
-        
-        let threeBut = createButton(image: .three.resize(targetSize: CGSize(width: 18, height: 20)))
-        midView.addSubview(threeBut)
-        threeBut.snp.makeConstraints { make in
-            make.height.width.equalTo(57)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+        let stackView: UIStackView = {
+            let stack = UIStackView()
+            stack.axis = .horizontal
+            stack.spacing = 10
+            stack.distribution = .fillEqually
+            return stack
+        }()
+        midView.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalToSuperview().inset(10)
         }
-        threeBut.addTarget(self, action: #selector(showAverageLessionDuration), for: .touchUpInside)
-        
-        let twoBut = createButton(image: .two.resize(targetSize: CGSize(width: 17, height: 20)))
-        midView.addSubview(twoBut)
-        twoBut.snp.makeConstraints { make in
-            make.height.width.equalTo(57)
-            make.right.equalTo(threeBut.snp.left).inset(-13)
-            make.centerY.equalToSuperview()
-        }
-        twoBut.addTarget(self, action: #selector(showAverageLoss), for: .touchUpInside)
         
         let oneBut = createButton(image: .one.resize(targetSize: CGSize(width: 20, height: 20)))
-        midView.addSubview(oneBut)
-        oneBut.snp.makeConstraints { make in
-            make.height.width.equalTo(57)
-            make.right.equalTo(twoBut.snp.left).inset(-13)
-            make.centerY.equalToSuperview()
-        }
+        stackView.addArrangedSubview(oneBut)
         oneBut.addTarget(self, action: #selector(showTotalBalance), for: .touchUpInside)
         
+        let twoBut = createButton(image: .two.resize(targetSize: CGSize(width: 17, height: 20)))
+        stackView.addArrangedSubview(twoBut)
+        twoBut.addTarget(self, action: #selector(showAverageLoss), for: .touchUpInside)
+        
+        let threeBut = createButton(image: .three.resize(targetSize: CGSize(width: 18, height: 20)))
+        stackView.addArrangedSubview(threeBut)
+        threeBut.addTarget(self, action: #selector(showAverageLessionDuration), for: .touchUpInside)
+        
         let fourBut = createButton(image: .four.resize(targetSize: CGSize(width: 17, height: 20)))
-        midView.addSubview(fourBut)
-        fourBut.snp.makeConstraints { make in
-            make.height.width.equalTo(57)
-            make.left.equalTo(threeBut.snp.right).inset(-13)
-            make.centerY.equalToSuperview()
-        }
+        stackView.addArrangedSubview(fourBut)
         fourBut.addTarget(self, action: #selector(showAverageProfit), for: .touchUpInside)
         
         let fiveBut = createButton(image: .five.resize(targetSize: CGSize(width: 22, height: 20)))
-        midView.addSubview(fiveBut)
-        fiveBut.snp.makeConstraints { make in
-            make.height.width.equalTo(57)
-            make.left.equalTo(fourBut.snp.right).inset(-13)
-            make.centerY.equalToSuperview()
-        }
+        stackView.addArrangedSubview(fiveBut)
         fiveBut.addTarget(self, action: #selector(totalCourses), for: .touchUpInside)
         
         

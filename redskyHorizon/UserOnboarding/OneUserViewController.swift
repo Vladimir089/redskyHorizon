@@ -33,7 +33,18 @@ class OneUserViewController: UIViewController {
                 make.left.right.equalToSuperview()
                 make.top.equalToSuperview()
                 let aspectRatio = image.size.height / image.size.width
-                make.height.equalTo(imageView.snp.width).multipliedBy(aspectRatio)
+
+                // Получаем ширину экрана
+                let screenWidth = UIScreen.main.bounds.width
+
+                // Задаем новую ширину, если ширина экрана меньше 375 (например для iPhone SE)
+                if screenWidth <= 375 {
+                    let newWidth = screenWidth * 0.85 // на 10% меньше
+                    make.width.equalTo(newWidth)
+                    make.height.equalTo(newWidth * aspectRatio)
+                } else {
+                    make.height.equalTo(imageView.snp.width).multipliedBy(aspectRatio)
+                }
             }
         }
         
@@ -77,7 +88,7 @@ class OneUserViewController: UIViewController {
         buttonGo.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(15)
             make.height.equalTo(50)
-            make.bottom.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().inset(25)
         }
         buttonGo.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         

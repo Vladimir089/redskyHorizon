@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152F9B742C2C1B45006E7E9C /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B732C2C1B45006E7E9C /* CoursesView.swift */; };
+		152F9B762C2C1F17006E7E9C /* YouCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B752C2C1F17006E7E9C /* YouCoursesViewController.swift */; };
+		152F9B782C2C360C006E7E9C /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B772C2C360C006E7E9C /* CourseModel.swift */; };
+		152F9B7D2C2C383D006E7E9C /* workCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B7C2C2C383D006E7E9C /* workCourseViewController.swift */; };
 		1568ABF12C2AD38700C967FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF02C2AD38700C967FC /* AppDelegate.swift */; };
 		1568ABF32C2AD38700C967FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF22C2AD38700C967FC /* SceneDelegate.swift */; };
 		1568ABF82C2AD38700C967FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1568ABF62C2AD38700C967FC /* Main.storyboard */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		152F9B732C2C1B45006E7E9C /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		152F9B752C2C1F17006E7E9C /* YouCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouCoursesViewController.swift; sourceTree = "<group>"; };
+		152F9B772C2C360C006E7E9C /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		152F9B7C2C2C383D006E7E9C /* workCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workCourseViewController.swift; sourceTree = "<group>"; };
 		1568ABED2C2AD38700C967FC /* redskyHorizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = redskyHorizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1568ABF02C2AD38700C967FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1568ABF22C2AD38700C967FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		152F9B702C2C17FA006E7E9C /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				152F9B7B2C2C377C006E7E9C /* EditAndnewCourses */,
+				152F9B732C2C1B45006E7E9C /* CoursesView.swift */,
+				152F9B752C2C1F17006E7E9C /* YouCoursesViewController.swift */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		152F9B7B2C2C377C006E7E9C /* EditAndnewCourses */ = {
+			isa = PBXGroup;
+			children = (
+				152F9B7C2C2C383D006E7E9C /* workCourseViewController.swift */,
+			);
+			path = EditAndnewCourses;
+			sourceTree = "<group>";
+		};
 		1568ABE42C2AD38700C967FC = {
 			isa = PBXGroup;
 			children = (
@@ -72,12 +98,14 @@
 		1568ABEF2C2AD38700C967FC /* redskyHorizon */ = {
 			isa = PBXGroup;
 			children = (
+				152F9B702C2C17FA006E7E9C /* Courses */,
 				1568AC1B2C2B315800C967FC /* TabBar */,
 				1568ABFE2C2AD38900C967FC /* Info.plist */,
 				1568AC052C2AD42900C967FC /* Other */,
 				1568AC042C2AD40E00C967FC /* loadScreen */,
 				1568AC0B2C2ADEB600C967FC /* UserOnboarding */,
 				1568AC122C2B005200C967FC /* MainDashboard */,
+				152F9B772C2C360C006E7E9C /* CourseModel.swift */,
 			);
 			path = redskyHorizon;
 			sourceTree = "<group>";
@@ -223,7 +251,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152F9B782C2C360C006E7E9C /* CourseModel.swift in Sources */,
 				1568AC192C2B18AB00C967FC /* TotalBalanceViewController.swift in Sources */,
+				152F9B7D2C2C383D006E7E9C /* workCourseViewController.swift in Sources */,
 				1568AC142C2B00FE00C967FC /* MainDashboardViewController.swift in Sources */,
 				1568AC0F2C2ADF0B00C967FC /* TwoUserViewController.swift in Sources */,
 				1568AC172C2B022800C967FC /* MainDashboardView.swift in Sources */,
@@ -232,7 +262,9 @@
 				1568AC1D2C2B317700C967FC /* TabViewController.swift in Sources */,
 				1568AC0D2C2ADEFC00C967FC /* OneUserViewController.swift in Sources */,
 				1568ABF32C2AD38700C967FC /* SceneDelegate.swift in Sources */,
+				152F9B762C2C1F17006E7E9C /* YouCoursesViewController.swift in Sources */,
 				1568AC1F2C2B3F1400C967FC /* CoursesViewController.swift in Sources */,
+				152F9B742C2C1B45006E7E9C /* CoursesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
