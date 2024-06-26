@@ -20,7 +20,7 @@ class TabViewController: UITabBarController {
         let tabBaritemTwo = UITabBarItem(title: "", image: UIImage(systemName: "chart.bar.doc.horizontal.fill")?.resize(targetSize: CGSize(width: 22, height: 25)), tag: 1)
         myCoursesVc.tabBarItem = tabBaritemTwo
 
-
+        myCoursesVc.delegate = dashboardVC.self
         viewControllers = [dashboardVC, myCoursesVc]
         
         

@@ -11,6 +11,7 @@ protocol MainDashboardViewControllerDelegate: AnyObject {
     func showModalVC(tag: Int)
     func showCourses()
     func updateDollar(symbol: String)
+    func updateTable()
 }
 
 class MainDashboardViewController: UIViewController {
@@ -25,6 +26,7 @@ class MainDashboardViewController: UIViewController {
         mainView?.delegate = self
         self.view = mainView
         checkSymbol()
+        checkCourses()
     }
     
     func checkSymbol() {
@@ -34,10 +36,21 @@ class MainDashboardViewController: UIViewController {
             self.mainView?.showCoursesButton?.setTitle(symbol, for: .normal)
         }
     }
+    
+    func checkCourses() {
+        if let loadedCourses = UserDefaults.standard.courses(forKey: "courses") {
+            courses = loadedCourses
+            mainView?.collectionView?.reloadData()
+        }
+    }
 
 }
 
 extension MainDashboardViewController: MainDashboardViewControllerDelegate {
+    func updateTable() {
+        mainView?.collectionView?.reloadData()
+    }
+    
     
     
     func updateDollar(symbol: String) {

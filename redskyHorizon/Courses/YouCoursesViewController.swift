@@ -7,31 +7,50 @@
 
 import UIKit
 
+var courses: [Course] = []
+
 protocol YouCoursesViewControllerDelegate: AnyObject {
     func showAlert(tag: Int)
     func showCourse(isNew: Bool, course: Course?)
+    func updateInterface(cours: [Course])
 }
 
 class YouCoursesViewController: UIViewController {
 
     var mainView: CoursesView?
+    weak var delegate: MainDashboardViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView = CoursesView()
         mainView?.delegate = self
         self.view = mainView
-    }
 
+    }
+    
+    
+
+    
 }
 
 
 extension YouCoursesViewController: YouCoursesViewControllerDelegate {
     
+    func updateInterface(cours: [Course]) {
+        courses = cours
+        mainView?.collectionView?.reloadData()
+        UserDefaults.standard.setCourses(cours, forKey: "courses")
+        delegate?.updateTable()
+        //тут обновляем коллекцию и тд
+    }
+    
+    
     func showCourse(isNew: Bool, course: Course?) {
         let vc = workCourseViewController()
+        vc.delegate = self
         if isNew == true {
             vc.isNew = true
+            
         } else {
             vc.isNew = false
             vc.course = course

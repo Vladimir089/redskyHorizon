@@ -11,16 +11,18 @@ class workCourseViewController: UIViewController {
     
     var isNew: Bool?
     var course: Course?
+
+    weak var delegate: YouCoursesViewControllerDelegate?
     
     //UI
     var contentView: UIView?
     var onePlaceLabel, twoPlaceLabel: UILabel?
     var scrollView: UIScrollView?
-    
-    
+    var saveButton: UIButton?
     var titleTextField, categoryTextField, creationTextField, durationTextField: UITextField?
     var statusButton: UIButton?
     var descriptionText, keyText: UITextView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -448,6 +450,44 @@ class workCourseViewController: UIViewController {
             make.bottom.equalToSuperview()
         }
         
+        
+        saveButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Add", for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+            button.backgroundColor = .OC
+            button.layer.cornerRadius = 14
+            button.setTitleColor(.SC.withAlphaComponent(1), for: .normal)
+            return button
+        }()
+        view.addSubview(saveButton!)
+        saveButton?.snp.makeConstraints({ make in
+            make.height.equalTo(50)
+            make.left.right.equalToSuperview().inset(15)
+            make.bottom.equalToSuperview().inset(25)
+        })
+        
+        settingsView()
+    }
+    
+    
+    func settingsView() {
+        switch isNew {
+        case true:
+            saveButton?.setTitle("Save", for: .normal)
+            saveButton?.addTarget(self, action: #selector(saveNewCourse), for: .touchUpInside)
+        case false:
+            titleTextField?.text = course?.name
+            categoryTextField?.text = course?.category
+            creationTextField?.text = course?.creationDate
+            statusButton?.setTitle(course?.status, for: .normal)
+            durationTextField?.text = course?.duration
+            descriptionText?.text = course?.description
+            keyText?.text = course?.keyConcepts
+            saveButton?.setTitle("Add", for: .normal)
+        default:
+            return
+        }
     }
     
     
@@ -461,9 +501,17 @@ class workCourseViewController: UIViewController {
     
     //MARK: objc
     
+    @objc func saveNewCourse() {
+        let newCourse = Course(name: titleTextField?.text ?? "", category: categoryTextField?.text ?? "", creationDate: creationTextField?.text ?? "", status: statusButton?.titleLabel?.text ?? "", duration: durationTextField?.text ?? "", description: descriptionText?.text ?? "", keyConcepts: keyText?.text ?? "")
+        courses.insert(newCourse, at: 0)
+       
+        delegate?.updateInterface(cours: courses)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
         creationTextField?.text = dateFormatter.string(from: sender.date)
     }
     

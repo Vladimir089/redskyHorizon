@@ -7,10 +7,16 @@
 
 import UIKit
 
+
+
 class CoursesView: UIView {
     
     var activeLabel, allLabel: UILabel?
+    var collectionView: UICollectionView?
+
+    
     var delegate: YouCoursesViewControllerDelegate?
+    
 
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -33,7 +39,7 @@ class CoursesView: UIView {
         }()
         addSubview(topLabel)
         topLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(15)
             make.left.equalToSuperview().inset(15)
         }
         
@@ -160,6 +166,25 @@ class CoursesView: UIView {
         let gestureAll = UITapGestureRecognizer(target: self, action: #selector(eitAllCourses))
         allView.addGestureRecognizer(gestureAll)
         
+        collectionView = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            layout.minimumLineSpacing = 15 
+            layout.sectionInset = UIEdgeInsets(top: 3, left: 0, bottom: 15, right: 0) 
+            let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+            collection.backgroundColor = .clear
+            collection.delegate = self
+            collection.dataSource = self
+            collection.showsVerticalScrollIndicator = false
+            return collection
+        }()
+        addSubview(collectionView!)
+        collectionView?.snp.makeConstraints({ make in
+            make.bottom.equalToSuperview()
+            make.left.right.equalToSuperview().inset(15)
+            make.top.equalTo(topView.snp.bottom).inset(-15)
+        })
         
         
         
@@ -177,8 +202,6 @@ class CoursesView: UIView {
         if let text = UserDefaults.standard.object(forKey: "AllC") as? String {
             allLabel?.text = text
         }
-        
-        
     }
     
    
@@ -195,5 +218,108 @@ class CoursesView: UIView {
     @objc func addNewCourse() {
         delegate?.showCourse(isNew: true, course: nil)
     }
+    
+}
+
+
+extension CoursesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return courses.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.subviews.forEach { $0.removeFromSuperview() }
+        
+        cell.backgroundColor = .clear
+        cell.layer.cornerRadius = 24
+        
+        let imageArr = [UIImage.collectionOne, UIImage.collectionTwo, UIImage.collectionThree, UIImage.collectionFour]
+        
+        let imageView: UIImageView = {
+            let image = imageArr.randomElement()
+            let imageView = UIImageView(image: image)
+            return imageView
+        }()
+        cell.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalToSuperview()
+        }
+        
+        
+        let statusView: UIView = {
+            let view = UIView()
+            view.layer.cornerRadius = 7
+            
+            let label = UILabel()
+            label.text = courses[indexPath.row].status
+            label.font = .systemFont(ofSize: 12, weight: .semibold)
+            label.textColor = .SC.withAlphaComponent(1)
+            view.addSubview(label)
+            label.snp.makeConstraints { make in
+                make.centerX.centerY.equalToSuperview()
+            }
+            
+            if courses[indexPath.row].status == "Active" {
+                view.backgroundColor = .OC
+            } else {
+                view.backgroundColor = .SC.withAlphaComponent(0.1)
+            }
+            return view
+        }()
+        cell.addSubview(statusView)
+        statusView.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.top.left.equalToSuperview().inset(15)
+            if courses[indexPath.row].status == "Active" {
+                make.width.equalTo(51)
+            } else {
+                make.width.equalTo(59)
+            }
+        }
+        
+        let dataLabel: UILabel = {
+            let label = UILabel()
+            label.text = courses[indexPath.row].creationDate
+            label.font = .systemFont(ofSize: 12, weight: .semibold)
+            label.textColor = .SC.withAlphaComponent(0.5)
+            label.textAlignment = .left
+            return label
+        }()
+        cell.addSubview(dataLabel)
+        dataLabel.snp.makeConstraints { make in
+            make.left.bottom.equalToSuperview().inset(15)
+        }
+        
+        let nameLabel: UILabel = {
+            let label = UILabel()
+            label.text = courses[indexPath.row].name
+            label.font = .systemFont(ofSize: 17, weight: .semibold)
+            label.textColor = .SC.withAlphaComponent(1)
+            label.textAlignment = .left
+            label.numberOfLines = 2
+            return label
+        }()
+        cell.addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(15)
+            make.bottom.equalTo(dataLabel.snp.top).inset(-5)
+        }
+        
+        
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           let padding: CGFloat = 15 // Отступы
+        let collectionViewSize = collectionView.frame.size.width - padding
+           let cellWidth = collectionViewSize / 2 // Две ячейки в строку
+
+           return CGSize(width: cellWidth, height: cellWidth) // Соотношение сторон 1:1
+       }
+    
     
 }

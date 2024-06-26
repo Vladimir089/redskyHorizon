@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Course {
+struct Course: Codable {
     let name: String
     let category: String
     let creationDate: String
@@ -25,5 +25,23 @@ struct Course {
         self.duration = duration
         self.description = description
         self.keyConcepts = keyConcepts
+    }
+}
+
+
+extension UserDefaults {
+    func setCourses(_ courses: [Course], forKey key: String) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(courses) {
+            self.set(encoded, forKey: key)
+        }
+    }
+
+    func courses(forKey key: String) -> [Course]? {
+        if let data = self.data(forKey: key) {
+            let decoder = JSONDecoder()
+            return try? decoder.decode([Course].self, from: data)
+        }
+        return nil
     }
 }
