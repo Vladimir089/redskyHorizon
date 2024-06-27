@@ -11,8 +11,11 @@ class workCourseViewController: UIViewController {
     
     var isNew: Bool?
     var course: Course?
+    var index: Int?
 
     weak var delegate: YouCoursesViewControllerDelegate?
+    weak var secondDelegate: DetailViewControllerDelegate?
+    
     
     //UI
     var contentView: UIView?
@@ -22,18 +25,38 @@ class workCourseViewController: UIViewController {
     var titleTextField, categoryTextField, creationTextField, durationTextField: UITextField?
     var statusButton: UIButton?
     var descriptionText, keyText: UITextView?
+    var isKeyboardShown = false
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureNavigationBar()
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         settingNavBar()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    func configureNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .OC
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.tintColor = UIColor.white
+    }
+    
     
     
     func settingNavBar() {
         showNavigationBar()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.tintColor = UIColor.white
         if isNew == true {
             title = "Add Course"
         } else {
@@ -116,6 +139,7 @@ class workCourseViewController: UIViewController {
                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
                     
                 )
+                textField.delegate = self
                 textField.font = .systemFont(ofSize: 17, weight: .semibold)
                 return textField
             }()
@@ -153,6 +177,7 @@ class workCourseViewController: UIViewController {
                     string: "Text",
                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
                 )
+                textField.delegate = self
                 textField.font = .systemFont(ofSize: 17, weight: .semibold)
                 return textField
             }()
@@ -201,7 +226,7 @@ class workCourseViewController: UIViewController {
                 toolbar.sizeToFit()
                 let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
                 toolbar.setItems([doneButtonItem], animated: false)
-                
+                textField.delegate = self
                 textField.inputView = datePicker
                 textField.inputAccessoryView = toolbar
                 
@@ -296,6 +321,7 @@ class workCourseViewController: UIViewController {
                     string: "Text",
                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
                 )
+                textField.delegate = self
                 textField.font = .systemFont(ofSize: 17, weight: .semibold)
                 return textField
             }()
@@ -352,7 +378,8 @@ class workCourseViewController: UIViewController {
                     make.left.equalTo(textView.snp.left)
                 }
                 
-                // Отображение и скрытие placeholder
+                
+                
                 if textView.text.isEmpty {
                     onePlaceLabel?.isHidden = false
                 } else {
@@ -409,7 +436,7 @@ class workCourseViewController: UIViewController {
                     make.left.equalTo(textView.snp.left)
                 }
                 
-                // Отображение и скрытие placeholder
+                
                 if textView.text.isEmpty {
                     twoPlaceLabel?.isHidden = false
                 } else {
@@ -458,6 +485,8 @@ class workCourseViewController: UIViewController {
             button.backgroundColor = .OC
             button.layer.cornerRadius = 14
             button.setTitleColor(.SC.withAlphaComponent(1), for: .normal)
+            button.setTitleColor(.SC.withAlphaComponent(0.5), for: .disabled)
+            button.isEnabled = false
             return button
         }()
         view.addSubview(saveButton!)
@@ -471,20 +500,37 @@ class workCourseViewController: UIViewController {
     }
     
     
+    func updateSaveButtonState() {
+        let titleText = titleTextField?.text ?? ""
+        let categoryText = categoryTextField?.text ?? ""
+        let creationDateText = creationTextField?.text ?? ""
+        let durationText = durationTextField?.text ?? ""
+        let descriptionText = descriptionText?.text ?? ""
+        let keyConceptsText = keyText?.text ?? ""
+
+        let formIsComplete = !titleText.isEmpty && !categoryText.isEmpty && !creationDateText.isEmpty && !durationText.isEmpty && !descriptionText.isEmpty && !keyConceptsText.isEmpty
+
+        saveButton?.isEnabled = formIsComplete
+    }
+    
+    
     func settingsView() {
         switch isNew {
-        case true:
-            saveButton?.setTitle("Save", for: .normal)
-            saveButton?.addTarget(self, action: #selector(saveNewCourse), for: .touchUpInside)
         case false:
-            titleTextField?.text = course?.name
-            categoryTextField?.text = course?.category
-            creationTextField?.text = course?.creationDate
-            statusButton?.setTitle(course?.status, for: .normal)
-            durationTextField?.text = course?.duration
-            descriptionText?.text = course?.description
-            keyText?.text = course?.keyConcepts
+            titleTextField?.text = courses[index ?? 0].name
+            categoryTextField?.text = courses[index ?? 0].category
+            creationTextField?.text = courses[index ?? 0].creationDate
+            statusButton?.setTitle(courses[index ?? 0].status, for: .normal)
+            durationTextField?.text = courses[index ?? 0].duration
+            descriptionText?.text = courses[index ?? 0].description
+            keyText?.text = courses[index ?? 0].keyConcepts
+            saveButton?.setTitle("Save", for: .normal)
+            onePlaceLabel?.isHidden = true
+            twoPlaceLabel?.isHidden = true
+            saveButton?.addTarget(self, action: #selector(editCourse), for: .touchUpInside)
+        case true:
             saveButton?.setTitle("Add", for: .normal)
+            saveButton?.addTarget(self, action: #selector(saveNewCourse), for: .touchUpInside)
         default:
             return
         }
@@ -499,7 +545,20 @@ class workCourseViewController: UIViewController {
         return label
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     //MARK: objc
+    
+    @objc func editCourse() {
+        let newCourse = Course(name: titleTextField?.text ?? "", category: categoryTextField?.text ?? "", creationDate: creationTextField?.text ?? "", status: statusButton?.titleLabel?.text ?? "", duration: durationTextField?.text ?? "", description: descriptionText?.text ?? "", keyConcepts: keyText?.text ?? "")
+        
+        courses[index ?? 0] = newCourse
+        secondDelegate?.saveCourse(course: courses)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     @objc func saveNewCourse() {
         let newCourse = Course(name: titleTextField?.text ?? "", category: categoryTextField?.text ?? "", creationDate: creationTextField?.text ?? "", status: statusButton?.titleLabel?.text ?? "", duration: durationTextField?.text ?? "", description: descriptionText?.text ?? "", keyConcepts: keyText?.text ?? "")
@@ -513,16 +572,28 @@ class workCourseViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         creationTextField?.text = dateFormatter.string(from: sender.date)
+        updateSaveButtonState()
     }
     
     @objc func doneButtonTapped() {
         view.endEditing(true)
+        updateSaveButtonState()
     }
     
     @objc func hideKeyboard() {
         self.view.resignFirstResponder()
         self.view.endEditing(true)
+        updateSaveButtonState()
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        isKeyboardShown = true
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        isKeyboardShown = false
+    }
+    
     
     @objc func showMenu() {
         let option1Action = UIAction(title: "Active") { [weak self] _ in
@@ -594,16 +665,17 @@ extension workCourseViewController: UITextViewDelegate {
         if textView == keyText {
             twoPlaceLabel?.isHidden = true
         }
-
+        updateSaveButtonState()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        
-        UIView.animate(withDuration: 0.2) {
-            var contentInset = self.scrollView?.contentInset
-            contentInset!.bottom = 400
-            self.scrollView?.contentInset = .zero
-            self.scrollView?.scrollIndicatorInsets = .zero
+        if isKeyboardShown == false {
+            UIView.animate(withDuration: 0.2) {
+                var contentInset = self.scrollView?.contentInset
+                contentInset!.bottom = 400
+                self.scrollView?.contentInset = .zero
+                self.scrollView?.scrollIndicatorInsets = .zero
+            }
         }
         
         if textView == descriptionText {
@@ -616,10 +688,31 @@ extension workCourseViewController: UITextViewDelegate {
                 twoPlaceLabel?.isHidden = false
             }
         }
-       
-       
-
+        updateSaveButtonState()
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        updateSaveButtonState()
     }
     
     
+}
+
+
+extension workCourseViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        updateSaveButtonState()
+        textField.resignFirstResponder()
+        return true
+    }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        updateSaveButtonState()
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        updateSaveButtonState()
+        return true
+    }
 }

@@ -11,14 +11,20 @@ protocol MainDashboardViewControllerDelegate: AnyObject {
     func showModalVC(tag: Int)
     func showCourses()
     func updateDollar(symbol: String)
-    func updateTable()
+    func updateTable(cours: [Course])
+    func showDetail(index: Int)
+    func updateGuestVC()
+    func resetAll()
 }
 
 class MainDashboardViewController: UIViewController {
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        hideNavigationBar()
+    }
     
     var mainView: MainDashboardView?
+    var delegate: YouCoursesViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +53,34 @@ class MainDashboardViewController: UIViewController {
 }
 
 extension MainDashboardViewController: MainDashboardViewControllerDelegate {
-    func updateTable() {
+    
+    func resetAll() {
+        mainView?.activeCourses.removeAll()
         mainView?.collectionView?.reloadData()
+        mainView?.showCoursesButton?.setTitle("$", for: .normal)
+    }
+    
+    
+    func updateGuestVC() {
+        delegate?.updateTable()
+    }
+    
+    
+    
+    func showDetail(index: Int) {
+        let vc = DetailViewController()
+        vc.index = index
+        vc.secondDelagate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    func updateTable(cours: [Course]) {
+        courses = cours
+        UserDefaults.standard.setCourses(cours, forKey: "courses")
+        mainView?.activeCourses.removeAll()
+        mainView?.collectionView?.reloadData()
+        updateGuestVC()
     }
     
     
@@ -68,7 +100,6 @@ extension MainDashboardViewController: MainDashboardViewControllerDelegate {
     
     func showCourses() {
         let vc = CoursesViewController()
-        vc.hidesBottomBarWhenPushed = true
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }

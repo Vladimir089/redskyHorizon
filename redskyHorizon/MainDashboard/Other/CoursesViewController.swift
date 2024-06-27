@@ -23,20 +23,26 @@ class CoursesViewController: UIViewController {
     var collectionView: UICollectionView?
     
     override func viewWillAppear(_ animated: Bool) {
-        showNavigationBar()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.tintColor = UIColor.black
-        
-        if UserDefaults.standard.object(forKey: "selected") != nil {
-            selectedItem = UserDefaults.standard.object(forKey: "selected") as? Int
-        } else {
-            selectedItem = 0
-        }
-        
+        configureNavigationBar()
     }
+    
+    func configureNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .OC
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.tintColor = UIColor.black
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showNavigationBar()
         self.title = "Currency"
         createInterface()
     }
@@ -44,6 +50,13 @@ class CoursesViewController: UIViewController {
     
     func createInterface() {
         view.backgroundColor = .BG
+        
+        if UserDefaults.standard.object(forKey: "selected") != nil {
+            selectedItem = UserDefaults.standard.object(forKey: "selected") as? Int
+        } else {
+            selectedItem = 0
+        }
+        
         
         
         let orangeView: UIView = {
@@ -93,7 +106,7 @@ class CoursesViewController: UIViewController {
             make.bottom.equalToSuperview().inset(30)
         })
         saveButton?.addTarget(self, action: #selector(saveButAction), for: .touchUpInside)
-        
+        view.layoutIfNeeded()
     }
     
     

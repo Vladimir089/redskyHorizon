@@ -13,6 +13,9 @@ protocol YouCoursesViewControllerDelegate: AnyObject {
     func showAlert(tag: Int)
     func showCourse(isNew: Bool, course: Course?)
     func updateInterface(cours: [Course])
+    func showDetail(index: Int)
+    func updateTable()
+    func resetAll()
 }
 
 class YouCoursesViewController: UIViewController {
@@ -25,8 +28,14 @@ class YouCoursesViewController: UIViewController {
         mainView = CoursesView()
         mainView?.delegate = self
         self.view = mainView
-
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        hideNavigationBar()
+    }
+    
+    
     
     
 
@@ -36,25 +45,38 @@ class YouCoursesViewController: UIViewController {
 
 extension YouCoursesViewController: YouCoursesViewControllerDelegate {
     
+    func resetAll() {
+        mainView?.collectionView?.reloadData()
+        mainView?.activeLabel?.text = "0"
+        mainView?.allLabel?.text = "0"
+    }
+    
+    
+    func updateTable() {
+        mainView?.collectionView?.reloadData()
+    }
+    
+    
+    func showDetail(index: Int) {
+        let vc = DetailViewController()
+        vc.delegate = self
+        vc.index = index
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     func updateInterface(cours: [Course]) {
         courses = cours
         mainView?.collectionView?.reloadData()
         UserDefaults.standard.setCourses(cours, forKey: "courses")
-        delegate?.updateTable()
-        //тут обновляем коллекцию и тд
+        delegate?.updateTable(cours: courses)
     }
     
     
     func showCourse(isNew: Bool, course: Course?) {
         let vc = workCourseViewController()
         vc.delegate = self
-        if isNew == true {
-            vc.isNew = true
-            
-        } else {
-            vc.isNew = false
-            vc.course = course
-        }
+        vc.isNew = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

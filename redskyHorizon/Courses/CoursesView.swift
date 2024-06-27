@@ -13,11 +13,11 @@ class CoursesView: UIView {
     
     var activeLabel, allLabel: UILabel?
     var collectionView: UICollectionView?
-
+    
     
     var delegate: YouCoursesViewControllerDelegate?
     
-
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         createInterface()
@@ -169,8 +169,8 @@ class CoursesView: UIView {
         collectionView = {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
-            layout.minimumLineSpacing = 15 
-            layout.sectionInset = UIEdgeInsets(top: 3, left: 0, bottom: 15, right: 0) 
+            layout.minimumLineSpacing = 15
+            layout.sectionInset = UIEdgeInsets(top: 3, left: 0, bottom: 15, right: 0)
             let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
             collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
             collection.backgroundColor = .clear
@@ -204,7 +204,7 @@ class CoursesView: UIView {
         }
     }
     
-   
+    
     //MARK: -objc func
     
     @objc func editActiveCourses() {
@@ -221,6 +221,7 @@ class CoursesView: UIView {
     
 }
 
+//MARK: -ДОДЕЛАТЬ РЕДАКТИРОВАНИЕ КУРСОВ НА ЭТОТ ЭКРАН И НА ДАШБОРДЕ ПРИ КЛИКЕ НА КУРС ОТКРЫВАТЬ ПОДРОБНОСТИ С ВОЗМОЖНОСТЬЮ РЕДАКТИРОВАНИЯ И УДАЛЕНИЯ
 
 extension CoursesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -290,7 +291,7 @@ extension CoursesView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         }()
         cell.addSubview(dataLabel)
         dataLabel.snp.makeConstraints { make in
-            make.left.bottom.equalToSuperview().inset(15)
+            make.left.bottom.right.equalToSuperview().inset(15)
         }
         
         let nameLabel: UILabel = {
@@ -314,12 +315,16 @@ extension CoursesView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 15 // Отступы
+        let padding: CGFloat = 15 // Отступы
         let collectionViewSize = collectionView.frame.size.width - padding
-           let cellWidth = collectionViewSize / 2 // Две ячейки в строку
-
-           return CGSize(width: cellWidth, height: cellWidth) // Соотношение сторон 1:1
-       }
+        let cellWidth = collectionViewSize / 2 // Две ячейки в строку
+        
+        return CGSize(width: cellWidth, height: cellWidth) // Соотношение сторон 1:1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.showDetail(index: indexPath.row)
+    }
     
     
 }

@@ -11,6 +11,9 @@
 		152F9B762C2C1F17006E7E9C /* YouCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B752C2C1F17006E7E9C /* YouCoursesViewController.swift */; };
 		152F9B782C2C360C006E7E9C /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B772C2C360C006E7E9C /* CourseModel.swift */; };
 		152F9B7D2C2C383D006E7E9C /* workCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B7C2C2C383D006E7E9C /* workCourseViewController.swift */; };
+		152F9B802C2D7772006E7E9C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B7F2C2D7772006E7E9C /* DetailViewController.swift */; };
+		152F9B822C2DC098006E7E9C /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B812C2DC098006E7E9C /* UserPageViewController.swift */; };
+		152F9B852C2DD051006E7E9C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F9B842C2DD051006E7E9C /* SettingsViewController.swift */; };
 		1568ABF12C2AD38700C967FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF02C2AD38700C967FC /* AppDelegate.swift */; };
 		1568ABF32C2AD38700C967FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568ABF22C2AD38700C967FC /* SceneDelegate.swift */; };
 		1568ABF82C2AD38700C967FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1568ABF62C2AD38700C967FC /* Main.storyboard */; };
@@ -32,6 +35,9 @@
 		152F9B752C2C1F17006E7E9C /* YouCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouCoursesViewController.swift; sourceTree = "<group>"; };
 		152F9B772C2C360C006E7E9C /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		152F9B7C2C2C383D006E7E9C /* workCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workCourseViewController.swift; sourceTree = "<group>"; };
+		152F9B7F2C2D7772006E7E9C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		152F9B812C2DC098006E7E9C /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		152F9B842C2DD051006E7E9C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1568ABED2C2AD38700C967FC /* redskyHorizon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = redskyHorizon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1568ABF02C2AD38700C967FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1568ABF22C2AD38700C967FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +70,7 @@
 		152F9B702C2C17FA006E7E9C /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				152F9B7E2C2D7759006E7E9C /* Detail */,
 				152F9B7B2C2C377C006E7E9C /* EditAndnewCourses */,
 				152F9B732C2C1B45006E7E9C /* CoursesView.swift */,
 				152F9B752C2C1F17006E7E9C /* YouCoursesViewController.swift */,
@@ -77,6 +84,22 @@
 				152F9B7C2C2C383D006E7E9C /* workCourseViewController.swift */,
 			);
 			path = EditAndnewCourses;
+			sourceTree = "<group>";
+		};
+		152F9B7E2C2D7759006E7E9C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				152F9B7F2C2D7772006E7E9C /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		152F9B832C2DD03E006E7E9C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				152F9B842C2DD051006E7E9C /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1568ABE42C2AD38700C967FC = {
@@ -98,6 +121,7 @@
 		1568ABEF2C2AD38700C967FC /* redskyHorizon */ = {
 			isa = PBXGroup;
 			children = (
+				152F9B832C2DD03E006E7E9C /* Settings */,
 				152F9B702C2C17FA006E7E9C /* Courses */,
 				1568AC1B2C2B315800C967FC /* TabBar */,
 				1568ABFE2C2AD38900C967FC /* Info.plist */,
@@ -135,6 +159,7 @@
 			children = (
 				1568AC0E2C2ADF0B00C967FC /* TwoUserViewController.swift */,
 				1568AC0C2C2ADEFC00C967FC /* OneUserViewController.swift */,
+				152F9B812C2DC098006E7E9C /* UserPageViewController.swift */,
 			);
 			path = UserOnboarding;
 			sourceTree = "<group>";
@@ -253,6 +278,7 @@
 			files = (
 				152F9B782C2C360C006E7E9C /* CourseModel.swift in Sources */,
 				1568AC192C2B18AB00C967FC /* TotalBalanceViewController.swift in Sources */,
+				152F9B822C2DC098006E7E9C /* UserPageViewController.swift in Sources */,
 				152F9B7D2C2C383D006E7E9C /* workCourseViewController.swift in Sources */,
 				1568AC142C2B00FE00C967FC /* MainDashboardViewController.swift in Sources */,
 				1568AC0F2C2ADF0B00C967FC /* TwoUserViewController.swift in Sources */,
@@ -262,7 +288,9 @@
 				1568AC1D2C2B317700C967FC /* TabViewController.swift in Sources */,
 				1568AC0D2C2ADEFC00C967FC /* OneUserViewController.swift in Sources */,
 				1568ABF32C2AD38700C967FC /* SceneDelegate.swift in Sources */,
+				152F9B852C2DD051006E7E9C /* SettingsViewController.swift in Sources */,
 				152F9B762C2C1F17006E7E9C /* YouCoursesViewController.swift in Sources */,
+				152F9B802C2D7772006E7E9C /* DetailViewController.swift in Sources */,
 				1568AC1F2C2B3F1400C967FC /* CoursesViewController.swift in Sources */,
 				152F9B742C2C1B45006E7E9C /* CoursesView.swift in Sources */,
 			);

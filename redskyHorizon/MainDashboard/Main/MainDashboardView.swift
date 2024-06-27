@@ -293,7 +293,7 @@ extension MainDashboardView: UICollectionViewDelegate, UICollectionViewDataSourc
         }()
         cell.addSubview(dataLabel)
         dataLabel.snp.makeConstraints { make in
-            make.left.bottom.equalToSuperview().inset(15)
+            make.left.bottom.right.equalToSuperview().inset(15)
         }
         
         let nameLabel: UILabel = {
@@ -310,19 +310,29 @@ extension MainDashboardView: UICollectionViewDelegate, UICollectionViewDataSourc
             make.left.right.equalToSuperview().inset(15)
             make.bottom.equalTo(dataLabel.snp.top).inset(-5)
         }
-        
-        
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 15 // Отступы
+           let padding: CGFloat = 15
         let collectionViewSize = collectionView.frame.size.width - padding
-           let cellWidth = collectionViewSize / 2 // Две ячейки в строку
-
-           return CGSize(width: cellWidth, height: cellWidth) // Соотношение сторон 1:1
+           let cellWidth = collectionViewSize / 2
+           return CGSize(width: cellWidth, height: cellWidth)
        }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var index = 0
+        var course: Course = activeCourses[indexPath.row]
+        
+        for i in courses {
+            if i.name == course.name {
+                delegate?.showDetail(index: index)
+                return
+            }
+            index += 1
+        }
+    }
     
     
 }

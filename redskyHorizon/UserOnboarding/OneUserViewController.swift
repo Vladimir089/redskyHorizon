@@ -9,7 +9,7 @@ import UIKit
 
 class OneUserViewController: UIViewController {
 
-    var pageControl = UIPageControl()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +17,8 @@ class OneUserViewController: UIViewController {
         view.backgroundColor = .mainBG
         createInterface()
     }
+    
+    //добавить делегат для скролла чтобы кнопка не перелистывала
     
     
     func createInterface() {
@@ -134,8 +136,11 @@ class OneUserViewController: UIViewController {
     }
     
     @objc func nextPage() {
-        self.navigationController?.pushViewController(TwoUserViewController(), animated: true)
+        if let parent = self.parent as? UserPageViewController {
+            parent.goToNextPage()
+        }
     }
+
     
 }
 
