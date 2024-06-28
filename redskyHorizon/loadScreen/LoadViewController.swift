@@ -61,18 +61,6 @@ class LoadViewController: UIViewController {
             return progress
         }()
 
-        
-//        progresBar = {
-//            let progres = UIProgressView(progressViewStyle: .bar)
-//            progres.trackTintColor = .SC
-//            progres.progressTintColor = .OC
-//            progres.layer.cornerRadius = 7
-//            progres.clipsToBounds = true
-//            progres.setProgress(0.0, animated: true)
-//            
-//            return progres
-//        }()
-        
         view.addSubview(progresBar!)
         progresBar?.snp.makeConstraints({ make in
             make.height.equalTo(11)
