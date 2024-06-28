@@ -161,7 +161,14 @@ class SettingsViewController: UIViewController {
     @objc func shareApp() {
         let appURL = URL(string: "https://apps.apple.com/app/\(appID)")!
         let activityViewController = UIActivityViewController(activityItems: [appURL], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        // Настройка для показа в виде popover на iPad
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = [] // Без стрелки
+        }
+
         self.present(activityViewController, animated: true, completion: nil)
     }
     
@@ -205,7 +212,6 @@ class SettingsViewController: UIViewController {
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
-        
     }
     
  
